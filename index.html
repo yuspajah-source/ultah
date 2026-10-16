@@ -998,7 +998,7 @@ img { max-width: 100%; display: block; }
     <p>selamat yahh semoga di umur 17 tahun ini semua keinginan dan harapanmu satu persatu dapat tercapai dan tambah ceriyaaa selaluu yahhh jangan sedih sedih🥺, semoga kebahagiaan selalu menyertai muu yahhhhh. aminn 😇🤲</p>
     <p style="margin-top:10px">Dann aku juga mau Berterima kasih sudah menemani hari harikuu selama aku PKL, akuu jugaa makasih karena kamu suka mayahin aku, sukaa larang akuu tentang hal hal yang buruk pokoknyaa makasih banyak yaww kamuu yang terbaikkkk. 💗</p>
     <p style="margin-top:10px;font-weight:700">With lots of good wishes, 🎀</p>
-    <div class="sign">~ 🌸 yours ♡</div>
+    <div class="sign">~ 🌸 y0usp ♡</div>
     <div id="letterBtn" style="text-align:center;margin-top:18px">
       <button class="btn next-page-btn">Lanjut ke kejutan berikutnya →</button>
     </div>
@@ -1096,6 +1096,16 @@ function updateBgmVolume() {
                        (typeof mawwSong !== 'undefined' && !mawwSong.paused);
   bgm.volume = otherPlaying ? BGM_DUCK : BGM_VOL;
 }
+
+  /* --- SOUND EFFECT (sfx.mp3) --- */
+  const sfx = new Audio('assets/musik/sfx.mp3');
+  sfx.preload = 'auto';
+  function playSfx() {
+    // cloneNode supaya bisa dipencet berkali-kali tanpa menunggu suara sebelumnya selesai
+    const a = sfx.cloneNode();
+    a.volume = 1;
+    a.play().catch(() => {});
+  }
 
   // Init Progress Dots
   for (let i = 1; i <= TOTAL; i++) {
@@ -1268,6 +1278,7 @@ function updateBgmVolume() {
   function openGift() {
     if (giftOpened) { nextPage(); return; }
     giftOpened = true;
+    playSfx();
     giftbox.classList.add('opened');
     const r = giftbox.getBoundingClientRect();
     hearts(r.left + r.width / 2, r.top + 40, 22);
@@ -1376,6 +1387,7 @@ function buildFrame() {
   }
 
   f.addEventListener('click', e => {
+    playSfx();
     const r = f.getBoundingClientRect();
     hearts(e.clientX || r.left + r.width / 2, e.clientY || r.top + r.height / 2, 14);
     burstConfetti(24);
@@ -1468,7 +1480,7 @@ addEventListener('resize', () => { clearTimeout(frameResizeT); frameResizeT = se
   }
   
   envelope.addEventListener('click', () => {
-    if (!letterPop.classList.contains('show')) openLetter();
+    if (!letterPop.classList.contains('show')) { playSfx(); openLetter(); }
   });
   dim.addEventListener('click', closeLetter);
   $('letterClose').addEventListener('click', closeLetter);
