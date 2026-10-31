@@ -79,7 +79,8 @@ img { max-width: 100%; display: block; }
   transition: background 1.2s var(--ease-smooth);
 }
 .app.night {
-  background: linear-gradient(160deg, var(--deep-berry) 0%, var(--wine-rose) 60%, #4a1a2a 100%);
+  /* Suasana setelah lilin padam: tetap terang, hangat, dan bernuansa pink */
+  background: linear-gradient(160deg, #FFF0F5 0%, #FADCE7 48%, #F7C9D9 100%);
 }
 
 .blob {
@@ -629,10 +630,28 @@ img { max-width: 100%; display: block; }
 .wish {
   font-family: var(--font-display); font-style: italic;
   font-size: 2.2rem; color: var(--deep-berry);
-  transition: color 0.6s, opacity 0.6s;
+  transition: color 0.8s ease, opacity 0.6s;
 }
-.tap { color: var(--dusty-rose); font-size: 0.9rem; margin-top: 8px; font-weight: 500; }
-.app.night .wish, .app.night .tap { color: var(--milky-pink); }
+.tap {
+  color: var(--dusty-rose); font-size: 0.9rem;
+  margin-top: 8px; font-weight: 500;
+  transition: color 0.8s ease;
+}
+
+/* Warna teks ikut berubah ketika semua lilin sudah padam.
+   Palet rose pastel menjaga tampilan tetap lembut dan mudah dibaca. */
+.app.night #p5 .chapter { color: #C87996; transition: color 0.8s ease; }
+.app.night #p5 .title { color: #B96583; transition: color 0.8s ease; }
+.app.night #p5 .title em { color: #D58BA6; }
+.app.night #p5 .desc { color: #916D7B; transition: color 0.8s ease; }
+.app.night #p5 .wish { color: #B85F80; }
+.app.night #p5 .tap { color: #C27A94; }
+.app.night #p5 #wishNext {
+  background: linear-gradient(135deg, #EFA3BB, #D987A4);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.75);
+  box-shadow: 0 10px 26px rgba(201,111,140,0.2);
+}
 #wishNext {
   margin-top: 24px; opacity: 0; transform: translateY(16px);
   pointer-events: none; transition: opacity 0.8s, transform 0.8s var(--ease-out-expo);
